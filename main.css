@@ -139,6 +139,7 @@ footer::before {
 #eml {
 	background: none;
 	border: none;
+	padding: none;
 }
 
 ul.blog {
