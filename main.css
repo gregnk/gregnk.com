@@ -65,7 +65,7 @@ h1 {
 	font-size: 30px;
 }
 
-h1, h2, h3 {
+h1, h2, h3, .divTable-row {
 	position: relative;
 }
 
@@ -107,16 +107,23 @@ hr.hr2 {
 	border-radius: 5px;
 }
 
-footer::before, header::after, h1::after, h2::after, h3::after {
+footer::before, header::after, h1::after, h2::after, h3::after, .divTable .divTable-row:not(:last-child)::after {
 	border-radius: 5px;
 	content: '';
 	position: absolute;
 	width: 100%;
-	height: 6px;
 	left: 0;
 }
 
-header::after, h1::after, h2::after, h3::after {
+footer::before, header::after, h1::after, h2::after, h3::after {
+	height: 6px;
+}
+
+.divTable-row::after {
+	height: 2px;
+}
+
+header::after, h1::after, h2::after, h3::after, .divTable .divTable-row:not(:last-child)::after {
 	top: 100%;
 }
 
@@ -124,7 +131,7 @@ footer::before, header::after {
 	background: rgb(0, 70, 127);
 }
 
-h1::after, h2::after {
+h1::after, h2::after, .divTable .divTable-row:not(:last-child)::after {
 	background: rgb(103, 103, 103);
 }
 
@@ -200,6 +207,7 @@ a:active {
 
 .divTable {
 	display: table;
+	--row-padding: 10px;
 }
 
 .divTable-row {
@@ -209,6 +217,11 @@ a:active {
 .divTable-cell {
 	display: table-cell;
 	padding-right: 20px;
+}
+
+.divTable-row .divTable-cell {
+	padding-top: var(--row-padding); 
+	padding-bottom: var(--row-padding);
 }
 
 /*******************************************
@@ -243,8 +256,18 @@ a:active {
 		padding-right: 0px;
 	}
 
+	.divTable-row .divTable-cell {
+		padding-top: 0px;
+		padding-bottom: 0px;
+	}
+
+	.divTable-row .divTable-cell:first-child {
+		padding-top: var(--row-padding); 
+	}
+
+
 	.divTable-row .divTable-cell:last-child {
-		padding-bottom: 20px; 
+		padding-bottom: var(--row-padding);
 	}
 
 }
